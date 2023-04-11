@@ -20,6 +20,7 @@ class CookAdmin(UserAdmin):
             "Additional info",
             {
                 "fields": (
+                    "email",
                     "first_name",
                     "last_name",
                     "years_of_experience",
@@ -36,4 +37,4 @@ class DishTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "dish_type")
+    list_display = ("name", "description", "price", "dish_type")
