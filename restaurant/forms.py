@@ -1,4 +1,7 @@
 from django import forms
+from django.contrib.auth import get_user_model
+
+from restaurant.models import Dish
 
 
 class DishTypeSearchForm(forms.Form):
@@ -26,3 +29,14 @@ class CookSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by username"})
     )
+
+
+class DishForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
