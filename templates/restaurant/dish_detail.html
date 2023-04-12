@@ -17,7 +17,18 @@
   <h5>Description</h5>
   <p>{{ dish.description }}</p>
   <hr>
-  <h5>Cooks who prepare this dish</h5>
+  <h5>
+    Cooks who prepare this dish
+    {% if dish in user.dishes.all %}
+      <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
+        Delete me from this dish
+      </a>
+    {% else %}
+      <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
+        Assign me from this dish
+      </a>
+    {% endif %}
+  </h5>
   <ul>
     {% for cook in dish.cooks.all %}
       <li><a href="{% url 'restaurant:cook-detail' pk=cook.id%}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></li>

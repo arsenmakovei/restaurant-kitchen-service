@@ -1,10 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from restaurant.forms import DishTypeSearchForm, DishSearchForm, CookSearchForm, DishForm
+from restaurant.forms import (
+    DishTypeSearchForm,
+    DishSearchForm,
+    CookSearchForm,
+    DishForm
+)
 from restaurant.models import Cook, DishType, Dish
 
 
@@ -159,3 +165,14 @@ class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
         "last_name",
         "years_of_experience"
     )
+
+
+@login_required
+def toggle_assign_to_dish(request, pk):
+    dish = get_object_or_404(Dish, id=pk)
+    user = request.user
+    if user in dish.cooks.all():
+        dish.cooks.remove(user)
+    else:
+        dish.cooks.add(user)
+    return HttpResponseRedirect(reverse_lazy("restaurant:dish-detail", args=[pk]))
