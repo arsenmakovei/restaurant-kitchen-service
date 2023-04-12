@@ -100,4 +100,3 @@ class CookListView(LoginRequiredMixin, generic.ListView):
             )
 
         return self.queryset
-
