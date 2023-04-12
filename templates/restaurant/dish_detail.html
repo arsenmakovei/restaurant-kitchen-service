@@ -3,10 +3,16 @@
 {% block content %}
   <h1>
     {{ dish.name }}
+    <a href="{% url 'restaurant:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+    <a href="{% url 'restaurant:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
   </h1>
   <hr>
   <h5>Dish Type</h5>
-  <p>{{ dish.dish_type }}</p>
+  <p><a href="{% url 'restaurant:dish-type-detail' pk=dish.dish_type.pk%}">{{ dish.dish_type }}</a></p>
   <hr>
   <h5>Description</h5>
   <p>{{ dish.description }}</p>
@@ -14,9 +20,9 @@
   <h5>Cooks who prepare this dish</h5>
   <ul>
     {% for cook in dish.cooks.all %}
-      <li><a href="{% url 'restaurant:cook-detail' pk=cook.id%}">{{ cook.username }}</a></li>
+      <li><a href="{% url 'restaurant:cook-detail' pk=cook.id%}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></li>
     {% empty %}
-      <p>There are no cooks here.</p>
+      <li>There are no cooks here.</li>
     {% endfor %}
   </ul>
   <hr>

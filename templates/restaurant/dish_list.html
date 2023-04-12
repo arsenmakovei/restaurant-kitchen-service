@@ -3,6 +3,9 @@
 {% block content %}
   <h1>
     Dish list
+    <a href="{% url 'restaurant:dish-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
   </h1>
   {% if dish_list %}
     {% include "includes/search_form.html" %}

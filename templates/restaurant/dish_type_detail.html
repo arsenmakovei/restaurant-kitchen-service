@@ -3,6 +3,12 @@
 {% block content %}
   <h1>
     {{ dish_type.name }}
+    <a href="{% url 'restaurant:dish-type-delete' pk=dish_type.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+    <a href="{% url 'restaurant:dish-type-update' pk=dish_type.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
   </h1>
   <hr>
   <h5>Dishes belonging to this type</h5>
@@ -10,7 +16,7 @@
     {% for dish in dish_type.dish_set.all %}
       <li><a href="{% url 'restaurant:dish-detail' pk=dish.id%}">{{ dish.name }}</a></li>
     {% empty %}
-      <p>There are no dishes here.</p>
+      <li>There are no dishes here.</li>
     {% endfor %}
   </ul>
   <hr>

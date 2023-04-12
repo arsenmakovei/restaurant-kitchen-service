@@ -2,7 +2,12 @@
 
 {% block content %}
   <h1>
-    Username: {{ cook.username }}
+    {{ cook.username }}
+    {% if user == cook %} (Me)
+    <a href="{% url 'restaurant:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+    {% endif %}
   </h1>
   <hr>
   <p><strong>Email address:</strong> {{ cook.email }}</p>
@@ -16,7 +21,7 @@
     {% for dish in cook.dishes.all %}
       <li><a href="{% url 'restaurant:dish-detail' pk=dish.id%}">{{ dish.name }}</a></li>
     {% empty %}
-      <p>There are no dishes here.</p>
+      <li>There are no dishes here.</li>
     {% endfor %}
   </ul>
 {% endblock %}
