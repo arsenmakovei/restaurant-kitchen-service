@@ -9,7 +9,7 @@ from restaurant.forms import (
     DishTypeSearchForm,
     DishSearchForm,
     CookSearchForm,
-    DishForm
+    DishForm, CookCreationForm
 )
 from restaurant.models import Cook, DishType, Dish
 
@@ -156,6 +156,11 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
 
 
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    form_class = CookCreationForm
+
+
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     fields = (
@@ -175,4 +180,6 @@ def toggle_assign_to_dish(request, pk):
         dish.cooks.remove(user)
     else:
         dish.cooks.add(user)
-    return HttpResponseRedirect(reverse_lazy("restaurant:dish-detail", args=[pk]))
+    return HttpResponseRedirect(reverse_lazy(
+        "restaurant:dish-detail", args=[pk])
+    )
