@@ -52,6 +52,12 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
         return self.queryset
 
 
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = DishType
+    context_object_name = "dish_type"
+    template_name = "restaurant/dish_type_detail.html"
+
+
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 5
@@ -78,6 +84,10 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+
+
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
@@ -100,3 +110,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
             )
 
         return self.queryset
+
+
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Cook

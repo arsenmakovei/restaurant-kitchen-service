@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ dish_type.name }}
+  </h1>
+  <hr>
+  <h5>Dishes belonging to this type</h5>
+  <ul>
+    {% for dish in dish_type.dish_set.all %}
+      <li><a href="{% url 'restaurant:dish-detail' pk=dish.id%}">{{ dish.name }}</a></li>
+    {% empty %}
+      <p>There are no dishes here.</p>
+    {% endfor %}
+  </ul>
+  <hr>
+{% endblock %}
