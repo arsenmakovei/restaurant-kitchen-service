@@ -5,11 +5,13 @@
     Dish list
   </h1>
   {% if dish_list %}
+    {% include "includes/search_form.html" %}
     <table class="table">
       <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Dish Type</th>
       </tr>
 
       {% for dish in dish_list %}
@@ -22,6 +24,9 @@
           </td>
           <td>
               {{ dish.price }}
+          </td>
+          <td>
+            {{ dish.dish_type }}
           </td>
         </tr>
       {% endfor %}

@@ -6,6 +6,7 @@
   </h1>
 
   {% if dish_type_list %}
+    {% include "includes/search_form.html" %}
     <table class="table">
       <tr>
         <th>ID</th>
@@ -15,13 +16,10 @@
       {% for dish_type in dish_type_list %}
         <tr>
           <td>
-              {{ dish_type.id }}
+            {{ dish_type.id }}
           </td>
           <td>
-              {{ dish_type.name }}
-          </td>
-          <td>
-              {{ manufacturer.country }}
+            {{ dish_type.name }}
           </td>
         </tr>
       {% endfor %}
