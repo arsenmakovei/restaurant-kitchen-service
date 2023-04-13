@@ -7,9 +7,11 @@ from django.views import generic
 
 from restaurant.forms import (
     DishTypeSearchForm,
+    DishTypeForm,
     DishSearchForm,
+    DishForm,
     CookSearchForm,
-    DishForm, CookCreationForm
+    CookCreationForm,
 )
 from restaurant.models import Cook, DishType, Dish
 
@@ -67,14 +69,14 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
-    fields = "__all__"
     template_name = "restaurant/dish_type_form.html"
+    form_class = DishTypeForm
 
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
-    fields = "__all__"
     template_name = "restaurant/dish_type_form.html"
+    form_class = DishTypeForm
 
 
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
