@@ -66,7 +66,7 @@ urlpatterns = [
         name="toggle-dish-assign"
     ),
     path("cooks/", CookListView.as_view(), name="cook-list"),
-    path("cooks/<int:pk>", CookDetailView.as_view(), name="cook-detail"),
+    path("cooks/<int:pk>/", CookDetailView.as_view(), name="cook-detail"),
     path(
         "cooks/create/",
         CookCreateView.as_view(),
