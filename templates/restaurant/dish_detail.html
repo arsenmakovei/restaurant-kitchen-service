@@ -11,8 +11,11 @@
     </a>
   </h1>
   <hr>
-  <h5>Dish Type</h5>
-  <p><a href="{% url 'restaurant:dish-type-detail' pk=dish.dish_type.pk%}">{{ dish.dish_type }}</a></p>
+  <p>
+    <strong>Dish Type:</strong>
+    <a href="{% url 'restaurant:dish-type-detail' pk=dish.dish_type.pk%}">{{ dish.dish_type }}</a>
+  </p>
+  <p><strong>Price:</strong> {{ dish.price }}</p>
   <hr>
   <h5>Description</h5>
   <p>{{ dish.description }}</p>

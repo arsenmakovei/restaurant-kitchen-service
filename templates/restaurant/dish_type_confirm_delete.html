@@ -9,6 +9,9 @@
     {% csrf_token %}
 
     <input type="submit" value="Yes, I am sure." class="btn btn-danger">
+    <a href="{% url 'restaurant:dish-type-detail' pk=dishtype.id %}" class="btn btn-secondary">
+      Cancel
+    </a>
   </form>
   <hr>
 {% endblock %}
