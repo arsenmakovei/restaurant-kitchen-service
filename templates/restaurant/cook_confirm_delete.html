@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete your account?</h1>
+  <hr>
+  <p>Are you sure you want to delete your account?</p>
+  <p><i>All your personal information will be also deleted!</i></p>
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Yes, I am sure." class="btn btn-danger">
+    <a href="{% url 'restaurant:cook-detail' pk=user.id %}" class="btn btn-secondary">
+      Cancel
+    </a>
+  </form>
+  <hr>
+{% endblock %}

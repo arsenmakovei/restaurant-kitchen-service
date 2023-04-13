@@ -4,8 +4,11 @@
   <h1>
     {{ cook.username }}
     {% if user == cook %} (Me)
-    <a href="{% url 'restaurant:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">
-      Update
+    <a href="{% url 'restaurant:cook-delete' pk=user.id %}" class="btn btn-danger link-to-page">
+      Delete account
+    </a>
+    <a href="{% url 'restaurant:cook-update' pk=user.id %}" class="btn btn-secondary link-to-page">
+      Update profile
     </a>
     {% endif %}
   </h1>
