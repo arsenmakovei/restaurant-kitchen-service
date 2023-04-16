@@ -28,13 +28,13 @@
 
 <body class="{% block body_class %}{% endblock body_class %}">
 
-    {% include "includes/navigation.html" %}
+  {% include "includes/navigation.html" %}
 
-    {% block content %}{% endblock content %}
+  {% block content %}{% endblock content %}
 
-    {% block footer %}{% include "includes/footer.html" %}{% endblock footer %}
+  {% block footer %}{% include "includes/footer.html" %}{% endblock footer %}
 
-    {% include "includes/scripts.html" %}
+  {% include "includes/scripts.html" %}
 
   <!-- Specific JS goes HERE -->
   {% block javascripts %}{% endblock javascripts %}

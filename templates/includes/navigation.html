@@ -18,8 +18,8 @@
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center font-weight-bold" href="{% url 'restaurant:cook-list' %}">
-                    Cooks
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center font-weight-bold" href="{% url 'restaurant:dish-list' %}">
+                    Dishes
                   </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover mx-2">
@@ -28,8 +28,8 @@
                   </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center font-weight-bold" href="{% url 'restaurant:dish-list' %}">
-                    Dishes
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center font-weight-bold" href="{% url 'restaurant:cook-list' %}">
+                    Cooks
                   </a>
                 </li>
                 <li class="nav-item ms-lg-auto">
@@ -42,6 +42,15 @@
                   <a href="https://github.com/arsenmakovei/restaurant-kitchen-service"
                      target="_blank"
                      class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Project on github</a>
+                </li>
+                <li class="nav-item my-auto ms-3 ms-lg-0">
+                  {% if user.is_authenticated %}
+                     <a href="{% url 'restaurant:cook-detail' user.id%}"
+                     class="mx-3"><img src="/static/assets/img/icons8-cook-16.png" alt=""></a>
+                  {% else %}
+                     <a href=""
+                     class="mx-3"><img src="/static/assets/img/icons8-cook-16.png" alt=""></a>
+                  {% endif %}
                 </li>
               </ul>
             </div>
