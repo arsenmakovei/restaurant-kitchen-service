@@ -26,7 +26,8 @@ class ModelsTests(TestCase):
     def test_cook_str(self):
         self.assertEqual(
             str(self.cook),
-            f"{self.cook.username} ({self.cook.first_name} {self.cook.last_name})"
+            f"{self.cook.username} "
+            f"({self.cook.first_name} {self.cook.last_name})"
         )
 
     def test_dish_str(self):
