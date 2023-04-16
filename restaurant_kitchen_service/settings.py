@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "crispy_forms",
+    "crispy_bootstrap5",
     "restaurant",
 ]
 
@@ -76,7 +77,9 @@ TEMPLATES = [
     },
 ]
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = "restaurant_kitchen_service.wsgi.application"
 
@@ -117,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "restaurant.Cook"
 
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 
 # Internationalization
