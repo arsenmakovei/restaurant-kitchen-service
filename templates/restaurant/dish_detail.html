@@ -1,43 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ dish.name }}
-    <a href="{% url 'restaurant:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
-    <a href="{% url 'restaurant:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-  </h1>
-  <hr>
-  <p>
-    <strong>Dish Type:</strong>
-    <a href="{% url 'restaurant:dish-type-detail' pk=dish.dish_type.pk%}">{{ dish.dish_type }}</a>
-  </p>
-  <p><strong>Price:</strong> {{ dish.price }}</p>
-  <hr>
-  <h5>Description</h5>
-  <p>{{ dish.description }}</p>
-  <hr>
-  <h5>
-    Cooks who prepare this dish
-    {% if dish in user.dishes.all %}
-      <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
-        Delete me from this dish
-      </a>
-    {% else %}
-      <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
-        Assign me from this dish
-      </a>
-    {% endif %}
-  </h5>
-  <ul>
-    {% for cook in dish.cooks.all %}
-      <li><a href="{% url 'restaurant:cook-detail' pk=cook.id%}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></li>
-    {% empty %}
-      <li>There are no cooks here.</li>
-    {% endfor %}
-  </ul>
-  <hr>
+  <div class="page-header section-height-100 py-7 px-8 shadow-lg" style="background-image: url('/static/assets/img/curved-images/curved-13.jpg')">
+    <div class="pt-4 px-5 border-radius-2xl section-height-85 col-lg-12 blur shadow-blur">
+      <h2>
+        {{ dish.name }}
+        <a href="{% url 'restaurant:dish-delete' pk=dish.id %}" class="btn bg-gradient-danger my-auto float-end">
+          Delete
+        </a>
+        <a href="{% url 'restaurant:dish-update' pk=dish.id %}" class="btn bg-gradient-secondary my-auto float-end">
+          Update
+        </a>
+      </h2>
+      <div class="border-radius-xl blur-section px-4 pt-3 pb-1 my-3 text-dark">
+        <p>
+          <strong>Dish Type:</strong>
+          <a class="text-gradient text-primary" href="{% url 'restaurant:dish-type-detail' pk=dish.dish_type.pk%}">{{ dish.dish_type }}</a>
+        </p>
+        <p><strong>Price:</strong> {{ dish.price }}</p>
+      </div>
+      <div class="border-radius-xl blur-section px-4 pt-3 pb-1 my-3">
+        <h5>Description</h5>
+        <p>{{ dish.description }}</p>
+      </div>
+      <div class="border-radius-xl blur-section px-4 pt-3 pb-1 my-3">
+        <h5>
+          Cooks who are responsible for preparing this dish
+          {% if dish in user.dishes.all %}
+            <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn bg-gradient-danger float-end my-auto">
+              Delete me from this dish
+            </a>
+          {% else %}
+            <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn bg-gradient-success float-end my-auto">
+              Assign me from this dish
+            </a>
+          {% endif %}
+        </h5>
+      <ul>
+        {% for cook in dish.cooks.all %}
+          <li><a class="text-primary text-gradient" href="{% url 'restaurant:cook-detail' pk=cook.id%}">{{ cook.username }} {% if user == cook %} (Me){% endif %}</a></li>
+        {% empty %}
+          <li>There are no cooks here.</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}
