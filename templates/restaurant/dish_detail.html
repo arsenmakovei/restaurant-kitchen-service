@@ -27,13 +27,19 @@
         <h5>
           Cooks who are responsible for preparing this dish
           {% if dish in user.dishes.all %}
-            <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn bg-gradient-danger float-end my-auto">
+          <form action="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn bg-gradient-danger float-end my-auto">
               Delete me from this dish
-            </a>
+            </button>
+          </form>
           {% else %}
-            <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn bg-gradient-success float-end my-auto">
-              Assign me from this dish
-            </a>
+          <form action="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn bg-gradient-success float-end my-auto">
+              Assign me to this dish
+            </button>
+          </form>
           {% endif %}
         </h5>
       <ul>

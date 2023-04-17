@@ -68,7 +68,7 @@ class SearchFormsTests(TestCase):
         )
 
         url = reverse("restaurant:cook-list")
-        data = {"username": "admin"}
+        data = {"name": "admin"}
 
         response = self.client.get(url, data=data)
 
@@ -78,6 +78,6 @@ class SearchFormsTests(TestCase):
             CookSearchForm
         )
         self.assertEqual(
-            response.context["search_form"].initial["username"],
+            response.context["search_form"].initial["name"],
             "admin"
         )
