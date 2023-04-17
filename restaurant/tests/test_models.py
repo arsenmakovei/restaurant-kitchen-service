@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from restaurant.models import DishType, Dish
 
@@ -48,16 +49,18 @@ class ModelsTests(TestCase):
         self.assertEqual(self.cook.years_of_experience, years_of_experience)
 
     def test_dish_type_get_absolute_url(self):
-        expected_url = f"/dish-types/{self.dish_type.pk}/"
+        expected_url = reverse(
+            "restaurant:dish-type-detail", args=[self.dish_type.pk]
+        )
 
         self.assertEqual(self.dish_type.get_absolute_url(), expected_url)
 
     def test_dish_get_absolute_url(self):
-        expected_url = f"/dishes/{self.dish.pk}/"
+        expected_url = reverse("restaurant:dish-detail", args=[self.dish.pk])
 
         self.assertEqual(self.dish.get_absolute_url(), expected_url)
 
     def test_cook_get_absolute_url(self):
-        expected_url = f"/cooks/{self.cook.pk}/"
+        expected_url = reverse("restaurant:cook-detail", args=[self.cook.pk])
 
         self.assertEqual(self.cook.get_absolute_url(), expected_url)

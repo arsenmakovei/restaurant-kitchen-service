@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from restaurant.models import DishType, Dish, Cook
 from restaurant.forms import DishTypeSearchForm, DishSearchForm, CookSearchForm
@@ -16,7 +17,7 @@ class SearchFormsTests(TestCase):
         self.dish_type2 = DishType.objects.create(name="Salads")
 
     def test_dish_type_get_context_data_with_search_form(self):
-        url = "/dish-types/"
+        url = reverse("restaurant:dish-type-list")
         data = {"name": "So"}
 
         response = self.client.get(url, data=data)
@@ -43,7 +44,7 @@ class SearchFormsTests(TestCase):
             dish_type=self.dish_type2,
         )
 
-        url = "/dishes/"
+        url = reverse("restaurant:dish-list")
         data = {"name": "salad"}
 
         response = self.client.get(url, data=data)
@@ -66,7 +67,7 @@ class SearchFormsTests(TestCase):
             username="best.cook", password="super.cook",
         )
 
-        url = "/cooks/"
+        url = reverse("restaurant:cook-list")
         data = {"username": "admin"}
 
         response = self.client.get(url, data=data)

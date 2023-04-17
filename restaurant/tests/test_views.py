@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from restaurant.forms import DishTypeSearchForm
 from restaurant.models import DishType
@@ -16,7 +17,7 @@ class DishTypeListViewTests(TestCase):
         self.dish_type2 = DishType.objects.create(name="Salads")
 
     def test_get_context_data(self):
-        url = "/dish-types/"
+        url = reverse("restaurant:dish-type-list")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -26,7 +27,7 @@ class DishTypeListViewTests(TestCase):
         )
 
     def test_get_queryset_filtered(self):
-        url = "/dish-types/?name=Sou"
+        url = reverse("restaurant:dish-type-list") + "?name=Sou"
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -36,7 +37,7 @@ class DishTypeListViewTests(TestCase):
         )
 
     def test_get_queryset_not_filtered(self):
-        url = "/dish-types/"
+        url = reverse("restaurant:dish-type-list")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)

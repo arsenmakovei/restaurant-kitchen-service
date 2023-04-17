@@ -180,14 +180,14 @@ class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     )
 
 
-@login_required
-def toggle_assign_to_dish(request, pk):
-    dish = get_object_or_404(Dish, id=pk)
-    user = request.user
-    if user in dish.cooks.all():
-        dish.cooks.remove(user)
-    else:
-        dish.cooks.add(user)
-    return HttpResponseRedirect(reverse_lazy(
-        "restaurant:dish-detail", args=[pk])
-    )
+class ToggleAssignToDishView(LoginRequiredMixin, generic.View):
+    def get(self, request, pk):
+        dish = get_object_or_404(Dish, id=pk)
+        user = request.user
+        if user in dish.cooks.all():
+            dish.cooks.remove(user)
+        else:
+            dish.cooks.add(user)
+        return HttpResponseRedirect(reverse_lazy(
+            "restaurant:dish-detail", args=[pk])
+        )
