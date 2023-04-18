@@ -3,7 +3,7 @@
 Django Project for managing Cooks, Dishes & Dish Types
 
 ## Check it out!
-[Restaurant Kitchen project deployed to render](PASTE_LINK_HERE)
+[Restaurant Kitchen project deployed to render](https://restaurant-kitchen-service-vd6z.onrender.com)
 
 ## Installation
 
@@ -25,5 +25,10 @@ python manage.py runserver # Starts Django Server
 * Powerful admin panel for advanced managing
 
 ## Demo
+
+```
+username: guest
+passord: guest123
+```
 
 ![Website Interface](demo.png)
