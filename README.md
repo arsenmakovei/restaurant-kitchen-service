@@ -28,7 +28,7 @@ python manage.py runserver # Starts Django Server
 
 ```
 username: guest
-passord: guest123
+password: guest123
 ```
 
 ![Website Interface](demo.png)
