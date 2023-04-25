@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="page-header section-height-100 py-7 px-12 shadow-lg" style="background-image: url('/static/assets/img/curved-images/curved-13.jpg')">
+    <div class="pt-4 px-5 border-radius-2xl section-height-85 col-lg-9 blur shadow-blur">
+      <h2>
+        {{ object|yesno:"Update,Create" }} dish
+        {% if object %}
+          <a href="{% url 'restaurant:dish-detail' pk=dish.id %}" class="btn btn-secondary my-auto float-end">
+            Cancel
+          </a>
+        {% else %}
+          <a href="{% url 'restaurant:dish-list' %}" class="btn btn-secondary my-auto float-end">
+            Cancel
+          </a>
+        {% endif %}
+      </h2>
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+{% endblock %}

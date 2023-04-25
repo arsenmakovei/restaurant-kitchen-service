@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="page-header section-height-100 py-7 px-8 shadow-lg" style="background-image: url('/static/assets/img/curved-images/curved-13.jpg')">
+    <div class="pt-4 px-5 border-radius-2xl section-height-85 col-lg-12 blur shadow-blur">
+      <h2>
+        {{ cook.username }}
+        {% if user == cook %} <span class="text-muted">(Me)</span>
+        <a href="{% url 'restaurant:cook-delete' pk=user.id %}" class="btn my-auto bg-gradient-danger float-end">
+          Delete account
+        </a>
+        <a href="{% url 'restaurant:cook-update' pk=user.id %}" class="btn my-auto btn-secondary float-end">
+          Update profile
+        </a>
+        {% endif %}
+      </h2>
+      <div class="border-radius-xl blur-section px-4 pt-3 pb-1 my-3">
+        <p class="text-dark"><strong>Email address:</strong> {{ cook.email }}</p>
+        <p class="text-dark"><strong>First name:</strong> {{ cook.first_name }}</p>
+        <p class="text-dark"><strong>Last name:</strong> {{ cook.last_name }}</p>
+        <p class="text-dark"><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
+      </div>
+
+      <div class="border-radius-xl blur-section px-4 pt-3 pb-1">
+        <h4>Dishes that the cook prepares</h4>
+        <ul>
+          {% for dish in cook.dishes.all %}
+            <li><a class="text-gradient text-primary" href="{% url 'restaurant:dish-detail' pk=dish.id%}">{{ dish.name }}</a></li>
+          {% empty %}
+            <li>There are no dishes here.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

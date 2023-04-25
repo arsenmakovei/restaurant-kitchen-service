@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="page-header section-height-100 py-7 px-8 shadow-lg" style="background-image: url('/static/assets/img/curved-images/curved-13.jpg')">
+    <div class="pt-4 px-5 border-radius-2xl section-height-85 col-lg-12 blur shadow-blur">
+      <h2>
+        Dish Types
+        <a href="{% url 'restaurant:dish-type-create' %}" class="btn bg-gradient-primary my-auto float-end shadow-lg">
+          Add new
+        </a>
+      </h2>
+
+      {% if dish_type_list %}
+        {% include "includes/search_form.html" %}
+        <table class="table table-bordered table-hover shadow-lg bg-white">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+
+          {% for dish_type in dish_type_list %}
+            <tr>
+              <td>
+                {{ dish_type.id }}
+              </td>
+              <td>
+                <a class="text-primary text-gradient" href="{% url 'restaurant:dish-type-detail'  pk=dish_type.id%}">{{ dish_type.name }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+
+      {% else %}
+          <p>There are no dish types in the service.</p>
+      {% endif %}
+      {% include "includes/pagination.html" %}
+    </div>
+  </div>
+{% endblock %}
